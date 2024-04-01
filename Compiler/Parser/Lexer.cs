@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DynamicData;
 
-namespace Compiler.parser;
+namespace Compiler.Parser;
 
 using LexemeEater = Func<Caret.Eater, LexemeType?>;
 

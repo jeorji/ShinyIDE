@@ -14,7 +14,6 @@ public partial class App : Application
 {
     public override void Initialize()
     {
-        // Assets.Resources.Culture = new CultureInfo("en-EN");
         AvaloniaXamlLoader.Load(this);
     }
 

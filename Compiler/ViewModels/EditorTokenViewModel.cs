@@ -1,6 +1,6 @@
 using System;
-using Compiler.parser;
-using Scanner;
+using Compiler.Parser;
+//using Scanner;
 
 namespace Compiler.ViewModels;
 

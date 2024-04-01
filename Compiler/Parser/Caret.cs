@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using ReactiveUI;
 
-namespace Compiler.parser;
+namespace Compiler.Parser;
 
 public class Caret
 {

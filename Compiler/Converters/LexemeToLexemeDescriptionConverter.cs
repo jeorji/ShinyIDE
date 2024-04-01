@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using Avalonia.Data;
 using Avalonia.Data.Converters;
-using Compiler.parser;
-using Scanner;
+using Compiler.Parser;
 
 namespace Compiler.Converters;
 

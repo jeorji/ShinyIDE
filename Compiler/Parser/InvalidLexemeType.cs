@@ -1,4 +1,4 @@
-namespace Compiler.parser;
+namespace Compiler.Parser;
 
 public enum InvalidLexemeType
 {

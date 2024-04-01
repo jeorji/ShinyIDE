@@ -19,7 +19,6 @@
         <converters:FileNameConverter x:Key="FileNameConverter" />
         <converters:MayBeSavedToIconKindConverter x:Key="MayBeSavedToCloseIconConverter" />
         <converters:LexemeToLexemeDescriptionConverter x:Key="LexemeToLexemeDescriptionConverter" />
-        <converters:ErrorToDescriptionConverter x:Key="ErrorToDescriptionConverter" />
 
     </Application.Resources>
 

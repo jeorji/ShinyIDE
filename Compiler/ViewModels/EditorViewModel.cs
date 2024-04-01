@@ -5,11 +5,11 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Threading.Tasks;
-using Compiler.parser;
+using Compiler.Parser;
 using DynamicData;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
-using Scanner;
+//using Scanner;
 using Unit = System.Reactive.Unit;
 
 namespace Compiler.ViewModels;
