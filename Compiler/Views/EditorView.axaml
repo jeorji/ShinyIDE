@@ -1,0 +1,56 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="using:Compiler.ViewModels"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:assists="clr-namespace:Material.Styles.Assists;assembly=Material.Styles"
+             xmlns:lang="clr-namespace:Compiler.Lang"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Compiler.Views.EditorView">
+    <Design.DataContext>
+        <vm:EditorViewModel />
+    </Design.DataContext>
+
+    <!-- RowDefinitions="Auto, Auto, *" -->
+    <Grid x:DataType="vm:EditorViewModel">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" MinHeight="100" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="*" MinHeight="100" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+            <ContentControl Name="TextEditorSlot" />
+        </ScrollViewer>
+        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" />
+        <TabControl assists:TabControlAssist.TabHeaderHorizontalAlignment="Left" AutoScrollToSelectedItem="True"
+                    Theme="{StaticResource ScrollableTabControl}" Grid.Row="2">
+            <TabItem Header="{x:Static lang:Resources.TokensTab}">
+                <DataGrid SelectedIndex="{Binding SelectedTokenIndex}" Margin="0 4 0 0"
+                          VerticalScrollBarVisibility="Auto" IsReadOnly="True"
+                          CanUserReorderColumns="False"
+                          CanUserResizeColumns="True"
+                          CanUserSortColumns="False"
+                          ItemsSource="{Binding Tokens}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn FontSize="{Binding EditorsSet.FontSize}"
+                                            Header="{x:Static lang:Resources.TokensPositionColumn}"
+                                            Binding="{Binding CaretPos.AsString}" />
+                        <DataGridTextColumn FontSize="{Binding EditorsSet.FontSize}"
+                                            Header="{x:Static lang:Resources.TokensCodeColumn}"
+                                            Binding="{Binding Code}" />
+                        <DataGridTextColumn FontSize="{Binding EditorsSet.FontSize}"
+                                            Header="{x:Static lang:Resources.TokensTokenColumn}"
+                                            Binding="{Binding Value}" />
+                        <DataGridTextColumn FontSize="{Binding EditorsSet.FontSize}"
+                                            Header="{x:Static lang:Resources.TokensTypeColumn}"
+                                            Binding="{Binding Lexeme, Converter={StaticResource LexemeToLexemeDescriptionConverter}}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
+        <StackPanel Margin="10" HorizontalAlignment="Right" Grid.Row="3" Orientation="Horizontal">
+            <TextBlock Classes="Subtitle1" Text="{Binding CaretPos.AsString}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

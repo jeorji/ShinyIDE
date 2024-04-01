@@ -1,0 +1,160 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Compiler.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:heroIcons="clr-namespace:HeroIconsAvalonia.Controls;assembly=HeroIconsAvalonia"
+        xmlns:lang="clr-namespace:Compiler.Lang"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Compiler.Views.MainWindowView"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="My Shiny IDE">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Window.KeyBindings>
+        <KeyBinding x:DataType="vm:MainWindowViewModel" Gesture="Ctrl+OemPlus" Command="{Binding ZoomIn}" />
+        <KeyBinding x:DataType="vm:MainWindowViewModel" Gesture="Ctrl+OemMinus" Command="{Binding ZoomOut}" />
+        <KeyBinding x:DataType="vm:MainWindowViewModel" Gesture="Ctrl+S" Command="{Binding Save}" />
+    </Window.KeyBindings>
+
+    <Grid Name="DragDropRegion" x:DataType="vm:MainWindowViewModel" RowDefinitions="Auto, Auto, *">
+        <DockPanel Grid.Row="0">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="{x:Static lang:Resources.FileMenuItemHeader}">
+                    <MenuItem Header="{x:Static lang:Resources.CreateMenuItemHeader}"
+                              Command="{Binding Create}" />
+                    <MenuItem Header="{x:Static lang:Resources.OpenMenuItemHeader}" Command="{Binding Open}" />
+                    <MenuItem Header="{x:Static lang:Resources.SaveMenuItemHeader}" Command="{Binding Save}" />
+                    <MenuItem Header="{x:Static lang:Resources.SaveAsMenuItemHeader}"
+                              Command="{Binding SaveAs}" />
+                    <MenuItem Header="{x:Static lang:Resources.ExitMenuItemHeader}" Command="{Binding Exit}" />
+                </MenuItem>
+
+                <MenuItem Header="{x:Static lang:Resources.EditMenuItemHeader}">
+                    <MenuItem Header="{x:Static lang:Resources.UndoMenuItemHeader}" Command="{Binding Undo}" />
+                    <MenuItem Header="{x:Static lang:Resources.RedoMenuItemHeader}" Command="{Binding Redo}" />
+                    <MenuItem Header="{x:Static lang:Resources.CutMenuItemHeader}" Command="{Binding Cut}" />
+                    <MenuItem Header="{x:Static lang:Resources.CopyMenuItemHeader}" Command="{Binding Copy}" />
+                    <MenuItem Header="{x:Static lang:Resources.PasteMenuItemHeader}" Command="{Binding Paste}" />
+                    <MenuItem Header="{x:Static lang:Resources.DeleteMenuItemHeader}"
+                              Command="{Binding Delete}" />
+                    <MenuItem Header="{x:Static lang:Resources.SelectAllMenuItemHeader}"
+                              Command="{Binding SelectAll}" />
+                </MenuItem>
+
+                <MenuItem Header="{x:Static lang:Resources.TextMenuItemHeader}">
+                    <MenuItem.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical" />
+                        </ItemsPanelTemplate>
+                    </MenuItem.ItemsPanel>
+
+                    <MenuItem Header="{x:Static lang:Resources.ProblemFormulationMenuItemHeader}" />
+                    <MenuItem Header="{x:Static lang:Resources.GrammarMenuItemHeader}" />
+                    <MenuItem Header="{x:Static lang:Resources.GrammarClassificationMenuItemHeader}" />
+                    <MenuItem Header="{x:Static lang:Resources.AnalysisMethodMenuItemHeader}" />
+                    <MenuItem Header="{x:Static lang:Resources.DiagnosticNeutralizationMenuItemHeader}"
+                              Command="{Binding Fix}" />
+                    <MenuItem Header="{x:Static lang:Resources.TextExampleMenuItemHeader}"
+                              Command="{Binding SetTextExample}" />
+                    <MenuItem Header="{x:Static lang:Resources.BibliographyMenuItemHeader}" />
+                    <MenuItem Header="{x:Static lang:Resources.SourceCodeMenuItemHeader}" />
+                    <MenuItem Header="{x:Static lang:Resources.TextSizeMenuItemHeader}">
+                        <MenuItem Name="IncreaseTextSizeMenuItem"
+                                  Header="{x:Static lang:Resources.IncreaseTextSizeMenuItemHeader}"
+                                  Command="{Binding ZoomIn}" />
+                        <MenuItem Name="DecreaseTextSizeMenuItem"
+                                  Header="{x:Static lang:Resources.DecreaseTextSizeMenuItemHeader}"
+                                  Command="{Binding ZoomOut}" />
+                    </MenuItem>
+                </MenuItem>
+
+                <MenuItem Header="{x:Static lang:Resources.RunMenuItemHeader}" Command="{Binding Run}" />
+
+                <MenuItem Header="{x:Static lang:Resources.FixMenuItemHeader}" Command="{Binding Fix}" />
+
+                <MenuItem Header="{x:Static lang:Resources.DocsItemHeader}">
+                    <MenuItem Header="{x:Static lang:Resources.CallDocsItemHeader}" Command="{Binding CallDocs}" />
+                    <MenuItem Header="{x:Static lang:Resources.AboutProgramItemHeader}"
+                              Command="{Binding ShowAboutProgram}" />
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+
+        <StackPanel Grid.Row="1" Margin="16" Spacing="8" Orientation="Horizontal">
+            <Button Classes="Outline" ToolTip.Tip="{x:Static lang:Resources.ToolbarCreate}" Command="{Binding Create}">
+                <heroIcons:HeroIcon Type="Plus" />
+            </Button>
+            <Button Classes="Outline" Command="{Binding Open}" ToolTip.Tip="{x:Static lang:Resources.ToolbarOpen}">
+                <heroIcons:HeroIcon Type="FolderOpen" />
+            </Button>
+            <Button Classes="Outline" Command="{Binding Save}" ToolTip.Tip="{x:Static lang:Resources.ToolbarSave}">
+                <heroIcons:HeroIcon Type="FolderArrowDown" />
+            </Button>
+            <Button Classes="Outline" Command="{Binding Undo}" ToolTip.Tip="{x:Static lang:Resources.ToolbarUndo}">
+                <heroIcons:HeroIcon Type="ArrowLeft" />
+            </Button>
+            <Button Classes="Outline" Command="{Binding Redo}" ToolTip.Tip="{x:Static lang:Resources.ToolbarRedo}">
+                <heroIcons:HeroIcon Type="ArrowRight" />
+            </Button>
+            <Button Classes="Outline" Command="{Binding Copy}" ToolTip.Tip="{x:Static lang:Resources.ToolbarCopy}">
+                <heroIcons:HeroIcon Type="DocumentDuplicate" />
+            </Button>
+            <Button Classes="Outline" Command="{Binding Cut}" ToolTip.Tip="{x:Static lang:Resources.ToolbarCut}">
+                <heroIcons:HeroIcon Type="Scissors" />
+            </Button>
+            <Button Classes="Outline" Command="{Binding Paste}" ToolTip.Tip="{x:Static lang:Resources.ToolbarPaste}">
+                <heroIcons:HeroIcon Type="ClipboardDocument" />
+            </Button>
+            <Button Classes="Outline" ToolTip.Tip="{x:Static lang:Resources.ToolbarRun}" Command="{Binding Run}">
+                <heroIcons:HeroIcon Type="RocketLaunch" />
+            </Button>
+            <Button Classes="Outline" ToolTip.Tip="{x:Static lang:Resources.ToolbarFix}" Command="{Binding Fix}">
+                <heroIcons:HeroIcon Type="Wrench" />
+            </Button>
+            <Button Classes="Outline" ToolTip.Tip="{x:Static lang:Resources.ToolbarCallDocs}"
+                    Command="{Binding CallDocs}">
+                <heroIcons:HeroIcon Type="InformationCircle" />
+            </Button>
+            <Button Classes="Outline" ToolTip.Tip="{x:Static lang:Resources.ToolbarAboutProgram}"
+                    Command="{Binding ShowAboutProgram}">
+                <heroIcons:HeroIcon Type="QuestionMarkCircle" />
+            </Button>
+        </StackPanel>
+
+        <TabControl Grid.Row="2" SelectedIndex="{Binding CurrentEditorIndex}" ItemsSource="{Binding Editors}"
+                    AutoScrollToSelectedItem="True" Theme="{StaticResource ScrollableTabControl}">
+            <TabControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </TabControl.ItemsPanel>
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Spacing="6" Margin="24 12" Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock
+                            Classes="Headline6"
+                            VerticalAlignment="Center">
+                            <TextBlock.Text>
+                                <MultiBinding Converter="{StaticResource FileNameConverter}">
+                                    <Binding Path="FileName" />
+                                    <Binding Path="UntitledFileIndex" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+
+                        <Button ToolTip.Tip="Close file" Command="{Binding Close}">
+                            <heroIcons:HeroIcon
+                                Width="9" Height="9"
+                                Type="XMark"
+                                Kind="{Binding MayBeSaved, Converter={StaticResource MayBeSavedToCloseIconConverter}}" />
+                        </Button>
+                    </StackPanel>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+        </TabControl>
+    </Grid>
+</Window>

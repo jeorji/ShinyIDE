@@ -1,0 +1,35 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Compiler.App"
+             xmlns:local="using:Compiler"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
+             xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             xmlns:converters="clr-namespace:Compiler.Converters"
+             RequestedThemeVariant="Default">
+
+    <Application.DataTemplates>
+        <local:ViewLocator />
+    </Application.DataTemplates>
+
+    <Application.Resources>
+        <FontFamily x:Key="ContentControlThemeFontFamily">fonts:Inter#Inter, $Default</FontFamily>
+        <system:Double x:Key="ControlContentThemeFontSize">14</system:Double>
+
+        <converters:FileNameConverter x:Key="FileNameConverter" />
+        <converters:MayBeSavedToIconKindConverter x:Key="MayBeSavedToCloseIconConverter" />
+        <converters:LexemeToLexemeDescriptionConverter x:Key="LexemeToLexemeDescriptionConverter" />
+        <converters:ErrorToDescriptionConverter x:Key="ErrorToDescriptionConverter" />
+
+    </Application.Resources>
+
+    <Application.Styles>
+        <StyleInclude Source="avares://Semi.Avalonia/Themes/Index.axaml" />
+        <StyleInclude Source="avares://Semi.Avalonia.DataGrid/Index.axaml" />
+        <Style>
+            <Style.Resources>
+            </Style.Resources>
+        </Style>
+        <StyleInclude Source="avares://AvaloniaEdit/Themes/Fluent/AvaloniaEdit.xaml" />
+    </Application.Styles>
+</Application>
